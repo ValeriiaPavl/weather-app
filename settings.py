@@ -1,6 +1,6 @@
-import os.path
+import pathlib
 
-basedir = os.path.abspath((os.path.dirname(__file__)))
-SQLALCHEMY_DATABASE_URI = 'sqlite:////' + os.path.join(basedir, 'weather.db')
+path_to_db = pathlib.Path('.', 'weather.db').resolve()
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + str(path_to_db)
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SECRET_KEY = bytes(1234)
