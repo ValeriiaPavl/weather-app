@@ -1,7 +1,7 @@
 from flask import Flask, redirect, request, render_template, flash
 import sys
 from flask_sqlalchemy import SQLAlchemy
-from utils import fetch_weather, is_city_real
+from weather_api_requests import fetch_weather, is_city_real
 
 app = Flask(__name__)
 app.config.from_object('settings')
