@@ -1,7 +1,7 @@
 import requests
 from datetime import time
 
-url = 'http://api.weatherapi.com/v1/current.json'
+url = 'https://api.weatherapi.com/v1/current.json'
 
 with open('w_api_key.txt', 'r') as f:
     api_key = f.read()
