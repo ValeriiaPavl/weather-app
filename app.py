@@ -38,7 +38,6 @@ def add_city():
     if not (is_city_real(city)) or city == 'The city that doesn\'t exist!':
         flash('The city doesn\'t exist!')
         return redirect('/')
-    'The city doesn\'t exist!'
     db_cities = City.query.all()
     list_of_cities = set([item.name for item in db_cities])
     if city in list_of_cities:
