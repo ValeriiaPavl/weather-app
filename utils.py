@@ -9,10 +9,10 @@ with open('w_api_key.txt', 'r') as f:
 
 def is_city_real(city):
     params = {'key': api_key, 'q': city, 'aqi': 'no'}
-    resp_code = str(requests.get(url, params=params).status_code)
-    if int(resp_code[0]) != 4:
-        return True
-    return False
+    resp_code = requests.get(url, params=params).status_code
+    if 400 <= resp_code < 500:
+        return False
+    return True
 
 
 def fetch_weather(city, city_id):
