@@ -16,7 +16,7 @@ class City(db.Model):
         return f'<City name is {self.name}>'
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     cities = City.query.all()
     list_of_cities = [(item.name, item.id) for item in cities]
@@ -24,7 +24,7 @@ def index():
     return render_template('index.html', weathers=list_of_weathers)
 
 
-@app.route(f'/delete/<city_id>', methods=['GET', 'POST'])
+@app.route(f'/delete/<city_id>', methods=['POST'])
 def delete(city_id):
     city = City.query.filter_by(id=city_id).first()
     db.session.delete(city)
@@ -33,7 +33,7 @@ def delete(city_id):
 
 
 @app.route('/add', methods=['POST'])
-def choose_city():
+def add_city():
     city = request.form['city_name']
     if not (is_city_real(city)) or city == 'The city that doesn\'t exist!':
         flash('The city doesn\'t exist!')
