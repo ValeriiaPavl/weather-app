@@ -35,6 +35,9 @@ def delete(city_id):
 @app.route('/add', methods=['POST'])
 def add_city():
     city = request.form['city_name']
+    if len(city) > 60:
+        flash('The name is too long!')
+        return redirect('/')
     if not (is_city_real(city)) or city == 'The city that doesn\'t exist!':
         flash('The city doesn\'t exist!')
         return redirect('/')
