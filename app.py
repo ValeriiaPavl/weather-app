@@ -1,7 +1,7 @@
 from flask import Flask, redirect, request, render_template, flash
 import sys
 from flask_sqlalchemy import SQLAlchemy
-from utils import fetch_weather, if_city_exists
+from utils import fetch_weather, is_city_real
 
 app = Flask(__name__)
 app.config.from_object('settings')
@@ -35,7 +35,7 @@ def delete(city_id):
 @app.route('/add', methods=['POST'])
 def choose_city():
     city = request.form['city_name']
-    if not(if_city_exists(city)) or city == 'The city that doesn\'t exist!':
+    if not (is_city_real(city)) or city == 'The city that doesn\'t exist!':
         flash('The city doesn\'t exist!')
         return redirect('/')
     'The city doesn\'t exist!'

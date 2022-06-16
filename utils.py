@@ -7,7 +7,7 @@ with open('w_api_key.txt', 'r') as f:
     api_key = f.read()
 
 
-def if_city_exists(city):
+def is_city_real(city):
     params = {'key': api_key, 'q': city, 'aqi': 'no'}
     resp_code = str(requests.get(url, params=params).status_code)
     if int(resp_code[0]) != 4:
@@ -27,21 +27,19 @@ def fetch_weather(city, city_id):
             'skin': choose_time_skin(current_time)}
 
 
-def choose_time_skin(curr_datetime: str):
-    curr_time = curr_datetime.split(' ')[1]
-    time_hours, time_minutes = [int(numb) for numb in curr_time.split(':')]
-    current_time_formatted = time(time_hours, time_minutes)
+def choose_time_skin(local_datetime: str):
+    local_time = local_datetime.split(' ')[1]
+    time_hours, time_minutes = [int(n) for n in local_time.split(':')]
+    local_time_for_comparing = time(time_hours, time_minutes)
 
     start_day = time(hour=10, minute=0)
     end_day = time(hour=18, minute=0)
     start_night = time(hour=22, minute=0)
     end_night = time(hour=6, minute=0)
 
-    if start_day < current_time_formatted < end_day:
+    if start_day < local_time_for_comparing < end_day:
         return "card day"
-    if current_time_formatted > start_night or current_time_formatted < end_night:
+    if local_time_for_comparing > start_night or local_time_for_comparing < end_night:
         return "card night"
     else:
         return "card evening-morning"
-
-
