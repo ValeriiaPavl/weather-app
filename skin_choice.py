@@ -16,4 +16,4 @@ def choose_time_skin(local_datetime: str):
     if local_time_for_comparing > start_night or local_time_for_comparing < end_night:
         return "card night"
     else:
-        return "card evening-morning"
+        return "card dusk"
