@@ -4,7 +4,7 @@ from skin_choice import choose_time_skin
 
 url = 'https://api.weatherapi.com/v1/current.json'
 
-with open('w_api_key.txt', 'r') as f:
+with open('.env', 'r') as f:
     api_key = f.read()
 
 
