@@ -30,6 +30,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+venv
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -77,9 +78,10 @@ __pypackages__/
 
 # Environments
 .env
-.venv
+
 env/
 venv/
+myenv/
 ENV/
 env.bak/
 venv.bak/
